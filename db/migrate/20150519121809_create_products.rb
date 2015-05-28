@@ -5,7 +5,7 @@ class CreateProducts < ActiveRecord::Migration
       t.text :description
       t.decimal :price
 
-      t.timestamp
+      t.timestamps
     end
 
     add_index :products, :name
