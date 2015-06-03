@@ -1,0 +1,10 @@
+<li>
+  <h4>
+    <%= order_item.product.name %>
+  </h4>
+  <div>
+    <%= order_item.product.description %>
+    <%= link_to 'delete', order_item_path(order_item), method: :delete, class: 'pull-right' %>
+  </div>
+
+</li>

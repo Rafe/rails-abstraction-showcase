@@ -1,0 +1,10 @@
+<div class='jumbotron'>
+  <% if current_order.order_items.present? %>
+    <ul>
+      <%= render current_order.order_items %>
+    </ul>
+    <a class='btn btn-success'>Checkout</a>
+  <% else %>
+    <h2>You have no items in cart</h2>
+  <% end %>
+</div>

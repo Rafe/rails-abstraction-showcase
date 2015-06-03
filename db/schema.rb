@@ -13,17 +13,23 @@
 
 ActiveRecord::Schema.define(version: 20150519122702) do
 
-  create_table "cart_items", force: :cascade do |t|
+  create_table "order_items", force: :cascade do |t|
     t.integer  "product_id"
+    t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "carts", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "total_price"
+    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "orders", ["state", "created_at"], name: "index_orders_on_state_and_created_at"
+  add_index "orders", ["user_id", "created_at"], name: "index_orders_on_user_id_and_created_at"
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
