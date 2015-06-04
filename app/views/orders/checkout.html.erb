@@ -3,3 +3,38 @@
     <%= render current_order.order_items %>
   </ul>
 </div>
+
+<%= form_for current_order, url: proceed_order_path(current_order), method: :post do |f| %>
+  <legend>Order details</legend>
+  <% if current_order.errors.any? %>
+    <div class="error_messages">
+      <h2><%= pluralize(current_order.errors.count, "error") %> prohibited this subscription from being saved:</h2>
+      <ul>
+      <% current_order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :order_id, value: current_order.id %>
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= label_tag :card_number, "Credit Card Number " %>
+    <%= text_field_tag :card_number, nil, name: nil %>
+  </div>
+  <div class="field">
+    <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+    <%= text_field_tag :card_code, nil, name: nil %>
+  </div>
+  <div class="field">
+    <%= label_tag :card_month, "Card Expiration" %>
+    <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month"}%>
+    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}%>
+  </div>
+  <div class="actions">
+    <%= f.submit "Complete Order", class: 'btn btn-success' %>
+  </div>
+<% end %>

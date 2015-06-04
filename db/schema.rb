@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519122702) do
+ActiveRecord::Schema.define(version: 20150604041418) do
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "product_id"
@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 20150519122702) do
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "card_uear"
+    t.text     "address"
+    t.string   "card_number"
+    t.string   "card_code"
+    t.string   "card_month"
+    t.string   "card_year"
   end
 
   add_index "orders", ["state", "created_at"], name: "index_orders_on_state_and_created_at"

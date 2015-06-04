@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :orders, only: :index do
     member do
       get 'checkout'
-      post 'proseed'
+      post 'proceed'
     end
   end
 

@@ -10,9 +10,24 @@ class OrdersController < ApplicationController
   end
 
   def proceed
-    # check credit card data, check order, send email later
+    @order = Order.find(params[:id])
+
+    @order.update_attributes(order_params)
+    @order.complete!
 
     session[:order_id] = nil
-    @order.complete!
+    flash[:notice] = 'Order has already been processed, you will received confirmation email shortly'
+
+    redirect_to root_path
+  end
+
+  def order_params
+    params.require(:order).permit([
+      :address,
+      :card_number,
+      :card_code,
+      :card_month,
+      :card_year
+    ])
   end
 end
