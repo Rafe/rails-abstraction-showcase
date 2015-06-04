@@ -1,8 +1,9 @@
 <div class='jumbotron'>
   <% if current_order.order_items.present? %>
     <ul>
-      <%= render current_order.order_items %>
+      <%= render current_order.order_items, checkout: true %>
     </ul>
+    <h4>Total price :<%= current_order.total_price %></h4>
     <%= link_to 'Checkout', checkout_order_path(current_order), class: 'btn btn-success' %>
   <% else %>
     <h2>You have no items in cart</h2>

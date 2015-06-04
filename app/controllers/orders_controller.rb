@@ -12,13 +12,15 @@ class OrdersController < ApplicationController
   def proceed
     @order = Order.find(params[:id])
 
-    @order.update_attributes(order_params)
-    @order.complete!
-
-    session[:order_id] = nil
-    flash[:notice] = 'Order has already been processed, you will received confirmation email shortly'
-
-    redirect_to root_path
+    @order.assign_attributes(order_params)
+    @order.state = Order::COMPLETED
+    if @order.save
+      session[:order_id] = nil
+      flash[:notice] = 'Order has already been processed, you will received confirmation email shortly'
+      redirect_to root_path
+    else
+      render :checkout
+    end
   end
 
   def order_params

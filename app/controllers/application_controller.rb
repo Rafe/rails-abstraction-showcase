@@ -7,8 +7,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_order
 
   def current_order
-    @order ||= session[:order_id].present? ?
-      Order.find_by(session[:order_id]) :
-      Order.new
+    if session[:order_id].present?
+      @order ||= Order.current.find_by(id: session[:order_id]) || Order.new
+    else
+      @order ||= Order.new
+    end
   end
 end
