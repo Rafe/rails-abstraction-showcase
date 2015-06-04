@@ -3,7 +3,12 @@ Rails.application.routes.draw do
 
   resources :products, only: :index
   resources :order_items, only: [:create, :destroy]
-  resources :orders, only: :show
+  resources :orders, only: :index do
+    member do
+      get 'checkout'
+      post 'proseed'
+    end
+  end
 
   get '/about', to: 'pages#about'
 

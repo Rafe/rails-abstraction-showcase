@@ -3,7 +3,7 @@
     <ul>
       <%= render current_order.order_items %>
     </ul>
-    <a class='btn btn-success'>Checkout</a>
+    <%= link_to 'Checkout', checkout_order_path(current_order), class: 'btn btn-success' %>
   <% else %>
     <h2>You have no items in cart</h2>
   <% end %>

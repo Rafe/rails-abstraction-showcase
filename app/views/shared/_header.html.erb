@@ -16,7 +16,7 @@
       <ul class="pull-right nav navbar-nav">
         <% if current_user %>
           <li>
-            <%= link_to current_order do %>
+            <%= link_to orders_path do %>
               Cart
               <span class="badge"><%= current_order.order_items.count %></span>
             <% end %>

@@ -13,4 +13,13 @@ class Order < ActiveRecord::Base
       Order.create(user: user, state: CURRENT)
     end
   end
+
+  def initialize
+    super
+    self.state = CURRENT unless self.state
+  end
+
+  def complete!
+    update_attributes(state: COMPLETED)
+  end
 end
