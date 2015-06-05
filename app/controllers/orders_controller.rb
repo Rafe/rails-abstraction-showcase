@@ -8,11 +8,8 @@ class OrdersController < ApplicationController
   end
 
   def proceed
-    @order = Order.find(params[:id])
-
-    @order.assign_attributes(order_params)
-    @order.state = Order::COMPLETED
-    if @order.save
+    outcome = ProceedOrder.run!(id: params[:id], order_params: order_params)
+    if outcome
       session[:order_id] = nil
       flash[:notice] = t('order.proceed')
       redirect_to root_path
