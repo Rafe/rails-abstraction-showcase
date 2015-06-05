@@ -3,18 +3,21 @@ class OrderItemsController < ApplicationController
   before_action :assign_user_to_order
 
   def create
-    current_order.order_items.build(item_params)
-    current_order.save
+    outcome = CreateOrderItem.run(order: current_order, params: item_params)
 
-    session[:order_id] = current_order.id
+    if outcome.success?
+      session[:order_id] = current_order.id
+    end
 
     redirect_to products_path
   end
 
   def destroy
-    current_order.order_items.find(params[:id]).destroy
+    outcome = DestroyOrderItem.run(id: params[:id], order: current_order)
 
-    flash[:notice] = t('order_item.destroy')
+    if outcome.success?
+      flash[:notice] = t('order_item.destroy')
+    end
 
     redirect_to orders_path(current_order)
   end
