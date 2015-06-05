@@ -29,6 +29,8 @@ gem 'devise', '~> 3.4.1'
 
 gem 'kaminari'
 
+gem "interactor", "~> 3.0"
+
 group :development, :test do
   gem 'pry-byebug'
 
