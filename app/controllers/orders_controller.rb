@@ -2,11 +2,9 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @order = current_order
   end
 
   def checkout
-    @order = current_order
   end
 
   def proceed
@@ -16,7 +14,7 @@ class OrdersController < ApplicationController
     @order.state = Order::COMPLETED
     if @order.save
       session[:order_id] = nil
-      flash[:notice] = 'Order has already been processed, you will received confirmation email shortly'
+      flash[:notice] = t('order.proceed')
       redirect_to root_path
     else
       render :checkout

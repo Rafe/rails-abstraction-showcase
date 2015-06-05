@@ -14,16 +14,16 @@ class OrderItemsController < ApplicationController
   def destroy
     current_order.order_items.find(params[:id]).destroy
 
-    flash[:order_item_destoried] = 'Successfully remove item from cart'
+    flash[:notice] = t('order_item.destroy')
 
-    redirect_to order_path(order)
+    redirect_to orders_path(current_order)
   end
+
+  private
 
   def item_param
     params.require(:order_item).permit(:product_id)
   end
-
-  private
 
   def assign_user_to_order
     if user_signed_in? && current_order.user.blank?

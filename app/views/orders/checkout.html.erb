@@ -2,7 +2,7 @@
   <ul>
     <%= render current_order.order_items, checkout: false %>
   </ul>
-  <h4>Total price :<%= current_order.total_price %></h4>
+  <h4>Total price : <%= current_order.total_price %></h4>
 </div>
 
 <%= form_for current_order, url: proceed_order_path(current_order), method: :post do |f| %>
