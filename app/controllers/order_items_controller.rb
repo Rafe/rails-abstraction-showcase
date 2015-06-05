@@ -1,10 +1,11 @@
 class OrderItemsController < ApplicationController
+  expose(:order_item, attributes: :item_params)
   before_action :authenticate_user!
   before_action :assign_user_to_order
 
   def create
-    current_order.order_items.build(item_params)
-    current_order.save
+    order_item.order = current_order
+    order_item.save
 
     session[:order_id] = current_order.id
 
@@ -12,7 +13,7 @@ class OrderItemsController < ApplicationController
   end
 
   def destroy
-    current_order.order_items.find(params[:id]).destroy
+    order_item.destroy
 
     flash[:notice] = t('order_item.destroy')
 

@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  expose(:order, attributes: :order_params)
 
   def index
   end
@@ -8,11 +9,8 @@ class OrdersController < ApplicationController
   end
 
   def proceed
-    @order = Order.find(params[:id])
-
-    @order.assign_attributes(order_params)
-    @order.state = Order::COMPLETED
-    if @order.save
+    order.state = Order::COMPLETED
+    if order.save
       session[:order_id] = nil
       flash[:notice] = t('order.proceed')
       redirect_to root_path

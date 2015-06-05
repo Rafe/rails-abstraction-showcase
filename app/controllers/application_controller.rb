@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_order
 
+  decent_configuration do
+    strategy DecentExposure::StrongParametersStrategy
+  end
+
   def current_order
     if session[:order_id].present?
       @order ||= Order.current.find_by(id: session[:order_id]) || Order.new
