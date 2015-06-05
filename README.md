@@ -8,10 +8,6 @@ To let user can compare different abstraction frameworks.
 
 ## TODO
 
-+ implement checkout
-+ add unit test
-+ add feature spec
-
 + add [ActiveInteraction](https://github.com/orgsync/active_interaction)
 + add [Decent Exposure](https://github.com/hashrocket/decent_exposure)
 + add [Interactor](https://github.com/collectiveidea/interactor)
