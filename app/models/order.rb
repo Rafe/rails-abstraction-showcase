@@ -21,8 +21,8 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def initialize
-    super
+  def initialize(*args)
+    super(*args)
     self.state = CURRENT unless self.state
   end
 

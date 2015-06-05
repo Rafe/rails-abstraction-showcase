@@ -30,8 +30,11 @@ gem 'devise', '~> 3.4.1'
 gem 'kaminari'
 
 group :development, :test do
-  gem 'pry'
   gem 'pry-byebug'
+
+  gem 'shoulda-matchers'
+
+  gem "capybara-webkit"
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
