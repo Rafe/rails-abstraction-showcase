@@ -3,7 +3,7 @@ class OrderItemsController < ApplicationController
   before_action :assign_user_to_order
 
   def create
-    current_order.order_items.build(item_param)
+    current_order.order_items.build(item_params)
     current_order.save
 
     session[:order_id] = current_order.id
@@ -21,7 +21,7 @@ class OrderItemsController < ApplicationController
 
   private
 
-  def item_param
+  def item_params
     params.require(:order_item).permit(:product_id)
   end
 
