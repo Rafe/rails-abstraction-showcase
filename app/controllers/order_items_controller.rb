@@ -3,8 +3,7 @@ class OrderItemsController < ApplicationController
   before_action :assign_user_to_order
 
   def create
-    current_order.order_items.build(item_params)
-    current_order.save
+    CreateOrderItemAction.execute(order: current_order, params: item_params)
 
     session[:order_id] = current_order.id
 
@@ -12,7 +11,7 @@ class OrderItemsController < ApplicationController
   end
 
   def destroy
-    current_order.order_items.find(params[:id]).destroy
+    DestroyOrderItemAction.execute(id: params[:id], order: current_order)
 
     flash[:notice] = t('order_item.destroy')
 
