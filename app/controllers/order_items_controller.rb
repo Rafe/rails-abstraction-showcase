@@ -3,8 +3,7 @@ class OrderItemsController < ApplicationController
   before_action :assign_user_to_order
 
   def create
-    current_order.order_items.build(item_params)
-    current_order.save
+    CreateOrderItem.new(current_order, params).run
 
     session[:order_id] = current_order.id
 
@@ -12,7 +11,7 @@ class OrderItemsController < ApplicationController
   end
 
   def destroy
-    current_order.order_items.find(params[:id]).destroy
+    DestroyOrderItem.new(current_order, params).run
 
     flash[:notice] = t('order_item.destroy')
 
@@ -20,10 +19,6 @@ class OrderItemsController < ApplicationController
   end
 
   private
-
-  def item_params
-    params.require(:order_item).permit(:product_id)
-  end
 
   def assign_user_to_order
     if user_signed_in? && current_order.user.blank?

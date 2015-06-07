@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.page(params[:page]).per(9)
+    @products = FindProducts.new(params: params).run
   end
 end
