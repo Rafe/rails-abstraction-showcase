@@ -1,16 +1,16 @@
 <div class='col-md-4'>
-  <h3><%= product.name %></h3>
+  <h3><%= name %></h3>
   <div>
     <div>
       <img class='img-thumbnail' src='http://placehold.it/400x300'></img>
     </div>
     <div>
-      <%= product.description %>
+      <%= description %>
     </div>
-    <div>Price: <%= product.price%> </div>
+    <div>Price: <%= price %> </div>
   </div>
-  <%= form_for OrderItem.new do |f|%>
-    <%= f.hidden_field(:product_id, value: product.id) %>
+  <%= form_for order_item do |f|%>
+    <%= f.hidden_field(:product_id, value: id) %>
     <%= button_tag 'Order', class: 'btn btn-success' %>
   <% end %>
 </div>

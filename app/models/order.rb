@@ -7,10 +7,10 @@ class Order < ActiveRecord::Base
   CURRENT = 'current'
   COMPLETED = 'completed'
 
-  validates :address, presence: true, allow_blank: false, if: :complete?
-  validates :card_number, presence: true, allow_blank: false, if: :complete?
-  validates :card_year, presence: true, allow_blank: false, if: :complete?
-  validates :card_month, presence: true, allow_blank: false, if: :complete?
+  # validates :address, presence: true, allow_blank: false, if: :complete?
+  # validates :card_number, presence: true, allow_blank: false, if: :complete?
+  # validates :card_year, presence: true, allow_blank: false, if: :complete?
+  # validates :card_month, presence: true, allow_blank: false, if: :complete?
 
   def self.current_order_for(user)
     order = Order.find_by(user_id: user.id, state: CURRENT)
@@ -24,10 +24,6 @@ class Order < ActiveRecord::Base
   def initialize(*args)
     super(*args)
     self.state = CURRENT unless self.state
-  end
-
-  def complete?
-    self.state == COMPLETED
   end
 
   def total_price

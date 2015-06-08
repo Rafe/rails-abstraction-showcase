@@ -1,0 +1,12 @@
+<li>
+  <h4>
+    <%= model.product.name %>
+  </h4>
+  <div>
+    <%= model.product.description %>
+    <div>Price: <%= model.product.price %> </div>
+    <% if checkout? %>
+      <%= link_to 'delete', order_item_path(model), method: :delete %>
+    <% end %>
+  </div>
+</li>

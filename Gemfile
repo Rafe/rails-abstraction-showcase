@@ -29,6 +29,10 @@ gem 'devise', '~> 3.4.1'
 
 gem 'kaminari'
 
+gem 'reform'
+gem 'trailblazer'
+gem 'cells'
+
 group :development, :test do
   gem 'pry-byebug'
 

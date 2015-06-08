@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_order
 
+  include Trailblazer::Operation::Controller
+  require 'trailblazer/operation/controller/active_record'
+  include Trailblazer::Operation::Controller::ActiveRecord # named instance variables.
+
   def current_order
     if session[:order_id].present?
       @order ||= Order.current.find_by(id: session[:order_id]) || Order.new

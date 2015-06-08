@@ -1,6 +1,6 @@
 <div class='jumbotron'>
   <ul>
-    <%= render current_order.order_items, checkout: false %>
+    <%= concept('order_item/cell', collection: current_order.order_items) %>
   </ul>
   <h4>Total price : <%= current_order.total_price %></h4>
 </div>
