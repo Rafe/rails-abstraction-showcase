@@ -32,5 +32,5 @@ git checkout [abstraction framework name]
 + [Light Service](https://github.com/adomokos/light-service)
 + [Mutation](https://github.com/cypriss/mutations)
 + [Surrunded](https://github.com/saturnflyer/surrounded)
-+ todo: [Trialblazer](https://github.com/apotonick/trailblazer)
-+ todo: [wisper](https://github.com/krisleech/wisper)
++ [Trialblazer](https://github.com/apotonick/trailblazer)
++ [wisper](https://github.com/krisleech/wisper)
