@@ -3,27 +3,32 @@ class OrderItemsController < ApplicationController
   before_action :assign_user_to_order
 
   def create
-    current_order.order_items.build(item_params)
-    current_order.save
+    create_order_item = CreateOrderItem.new
 
-    session[:order_id] = current_order.id
+    create_order_item.on(:create_order_item_successful) do |order|
+      session[:order_id] = order.id
+      redirect_to products_path
+    end
 
-    redirect_to products_path
+    create_order_item.on(:create_order_item_failed) do
+      redirect_to products_path
+    end
+
+    create_order_item.call(current_order, params)
   end
 
   def destroy
-    current_order.order_items.find(params[:id]).destroy
+    destroy_order_item = DestroyOrderItem.new
 
-    flash[:notice] = t('order_item.destroy')
+    destroy_order_item.on(:destroy_order_item) do |order|
+      flash[:notice] = t('order_item.destroy')
+      redirect_to orders_path(order)
+    end
 
-    redirect_to orders_path(current_order)
+    destroy_order_item.call(current_order, params)
   end
 
   private
-
-  def item_params
-    params.require(:order_item).permit(:product_id)
-  end
 
   def assign_user_to_order
     if user_signed_in? && current_order.user.blank?

@@ -8,26 +8,18 @@ class OrdersController < ApplicationController
   end
 
   def proceed
-    @order = Order.find(params[:id])
+    proceed_order = ProceedOrder.new
 
-    @order.assign_attributes(order_params)
-    @order.state = Order::COMPLETED
-    if @order.save
+    proceed_order.on(:proceed_order_successful) do
       session[:order_id] = nil
       flash[:notice] = t('order.proceed')
       redirect_to root_path
-    else
+    end
+
+    proceed_order.on(:proceed_order_failed) do
       render :checkout
     end
-  end
 
-  def order_params
-    params.require(:order).permit([
-      :address,
-      :card_number,
-      :card_code,
-      :card_month,
-      :card_year
-    ])
+    proceed_order.call(params)
   end
 end
