@@ -3,8 +3,8 @@
 ## What is this?
 
 Rails abstraction showcase is the todomvc for Rails abstraction frameworks.
-It is an example shopping cart application that using several different abstraction framework to simplify logics.
-To let user can compare different abstraction frameworks.
+It is an example shopping cart application that using several different abstraction framework to extract business logics from controller and model,
+to let user can compare the difference in between abstraction frameworks.
 
 ## Install
 
