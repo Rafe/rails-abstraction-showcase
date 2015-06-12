@@ -1,5 +1,7 @@
 #Rails abstraction showcase
 
+[Blog link](http://neethack.com/2015/06/rails-abstraction-showcase/)
+
 ## What is this?
 
 Rails abstraction showcase is the todomvc for Rails abstraction frameworks.
